@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Button, Grid, Layer } from 'grommet';
 
 function ToggleLayer(props) {
-  const [isFocused, setIsFocused] = useState(false);
-  return ((props.show || isFocused) ? <Layer {...props} full plain>
+  return ((props.show) ? <Layer {...props} full plain>
     <Grid
       rows={["xsmall", "large", "xsmall"]}
-      columns={[{"count": "fit", "size":"full"}]}
+      columns={["auto", "auto"]}
       areas={[
         ["otherControls", "otherControls"],
         ["musicControls", "visualControls"],
@@ -18,7 +17,7 @@ function ToggleLayer(props) {
         background="light-2" 
         direction="row" 
         a11yTitle="Other Controls">
-        <Button label="label" />
+        <Button label="label" onFocus={()=>{console.log("beep")}}/>
         <Button label="label" />
         <Button label="label" />
         <Button label="label" />
