@@ -39,14 +39,10 @@ class App extends React.Component {
           target="document"
           >
           <Main onMouseMove={this.showToggleLayer} fill>
-            <CanvasLayer background="neutral-1">
+            <CanvasLayer background="brand">
               Canvas
             </CanvasLayer>
-            <ToggleLayer 
-              show={this.state.showMenu}
-              onEsc={()=>{this.setState({showMenu: false})}}>
-              Toggle Layer
-            </ToggleLayer>
+            <ToggleLayer show={this.state.showMenu}/>
           </Main>
         </Keyboard>
       </Grommet>
