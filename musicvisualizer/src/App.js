@@ -1,20 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
   Box, 
   Grommet,
   Keyboard,
-  Layer,
   Main
 } from 'grommet';
-
-const ToggleLayer = (props) => (
-  (props.show ? <Layer {...props} full/> : null)
-);
-
-const CanvasLayer = (props) => (
-  <Box
-    {...props} fill/>
-);
+import ToggleLayer from './Components/ToggleLayer';
+import CanvasLayer from './Components/CanvasLayer';
 
 class App extends React.Component {
   constructor(props){
