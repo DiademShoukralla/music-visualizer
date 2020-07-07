@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { Box, Button, Collapsible, Heading, Grommet } from 'grommet';
+import { 
+  Box, 
+  Button, 
+  Collapsible, 
+  Heading, 
+  Grommet,
+  ResponsiveContext
+} from 'grommet';
 import { Notification } from 'grommet-icons';
 
 const theme = {
@@ -33,31 +40,37 @@ function App() {
   const [showSidebar, setShowSidebar] = useState(false);
   return (
     <Grommet theme={theme} full>
-      <Box fill>
-        <AppBar>
-          <Heading level='3' margin='none'>My App</Heading>
-          <Button 
-            icon={<Notification />} 
-            onClick={() => {setShowSidebar(!showSidebar)}} 
-          />
-        </AppBar>
-        <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
-          <Box flex align='center' justify='center'>
-            app body
-          </Box>
-          <Collapsible direction="horizontal" open={showSidebar}>
-            <Box
-              width='medium'
-              background='light-2'
-              elevation='small'
-              align='center'
-              justify='center'
-            >
-              sidebar
+      <ResponsiveContext.Consumer>
+        {size => (
+          <Box fill>
+            <AppBar>
+              <Heading level='3' margin='none'>My App</Heading>
+              <Button 
+                icon={<Notification />} 
+                onClick={() => {setShowSidebar(!showSidebar)}} 
+              />
+            </AppBar>
+            <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
+              <Box flex align='center' justify='center'>
+                app body
+              </Box>
+              {size !== 'small' && (
+                <Collapsible direction="horizontal" open={showSidebar}>
+                  <Box
+                    width='medium'
+                    background='light-2'
+                    elevation='small'
+                    align='center'
+                    justify='center'
+                  >
+                    sidebar
+                  </Box>
+                </Collapsible>
+              )}
             </Box>
-          </Collapsible>
-        </Box>
-      </Box>
+          </Box>
+        )}
+      </ResponsiveContext.Consumer>
     </Grommet>
   );
 }
