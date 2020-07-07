@@ -36,6 +36,7 @@ class App extends React.Component {
       <Grommet full>
         <Keyboard 
           target="document"
+          onTab={this.showToggleLayer}
           >
           <Main onMouseMove={this.showToggleLayer} fill>
             <CanvasLayer background="brand">
