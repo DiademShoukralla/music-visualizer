@@ -22,12 +22,14 @@ function App() {
     <Grommet full>
       <Keyboard 
         target="document"
-        onEsc={() => {setShowMenu(!showMenu)}}>
+        >
         <Main fill>
           <CanvasLayer background="neutral-1">
             Canvas
           </CanvasLayer>
-          <ToggleLayer show={showMenu}>
+          <ToggleLayer 
+            show={showMenu}
+            onEsc={()=>{setShowMenu(false)}}>
             Toggle Layer
           </ToggleLayer>
         </Main>
