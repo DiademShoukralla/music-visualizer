@@ -16,26 +16,34 @@ const CanvasLayer = (props) => (
     {...props} fill/>
 );
 
-function App() {
-  const [showMenu, setShowMenu] = useState(true);
-  return (
-    <Grommet full>
-      <Keyboard 
-        target="document"
-        >
-        <Main fill>
-          <CanvasLayer background="neutral-1">
-            Canvas
-          </CanvasLayer>
-          <ToggleLayer 
-            show={showMenu}
-            onEsc={()=>{setShowMenu(false)}}>
-            Toggle Layer
-          </ToggleLayer>
-        </Main>
-      </Keyboard>
-    </Grommet>
-  );
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      showMenu: true
+    }
+  }
+
+  render() {
+    return (
+      <Grommet full>
+        <Keyboard 
+          target="document"
+          >
+          <Main fill>
+            <CanvasLayer background="neutral-1">
+              Canvas
+            </CanvasLayer>
+            <ToggleLayer 
+              show={this.state.showMenu}
+              onEsc={()=>{this.setState({showMenu: false})}}>
+              Toggle Layer
+            </ToggleLayer>
+          </Main>
+        </Keyboard>
+      </Grommet>
+    );
+  }
 }
 
 export default App;
