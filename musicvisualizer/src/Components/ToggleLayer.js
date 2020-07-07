@@ -1,8 +1,9 @@
-import React from 'react';
-import { Box, Grid, Layer } from 'grommet';
+import React, { useState } from 'react';
+import { Box, Button, Grid, Layer } from 'grommet';
 
-const ToggleLayer = (props) => (
-  (props.show ? <Layer {...props} full plain>
+function ToggleLayer(props) {
+  const [isFocused, setIsFocused] = useState(false);
+  return ((props.show || isFocused) ? <Layer {...props} full plain>
     <Grid
       rows={["xsmall", "large", "xsmall"]}
       columns={[{"count": "fit", "size":"full"}]}
@@ -12,21 +13,37 @@ const ToggleLayer = (props) => (
         ["footer", "footer"]
       ]}
       gap="small">
-      <Box gridArea="otherControls" background="light-2">
-        Other Controls
+      <Box 
+        gridArea="otherControls" 
+        background="light-2" 
+        direction="row" 
+        a11yTitle="Other Controls">
+        <Button label="label" />
+        <Button label="label" />
+        <Button label="label" />
+        <Button label="label" />
       </Box>
-      <Box gridArea="musicControls" background="light-2">
-        Music Controls
+      <Box 
+        gridArea="musicControls" 
+        a11yTitle="Music Controls"
+        background="light-2">
+        
       </Box>
-      <Box gridArea="visualControls" background="light-2">
-        Visual Controls
+      <Box 
+        gridArea="visualControls" 
+        a11yTitle="Visual Controls"
+        background="light-2">
+        
       </Box>
-      <Box gridArea="footer" background="light-2">
-        Footer information
+      <Box 
+        gridArea="footer" 
+        a11yTitle="Footer information"
+        background="light-2">
+        
       </Box>
     </Grid>
   </Layer> : null)
-);
+}
 
 
 export default ToggleLayer;
