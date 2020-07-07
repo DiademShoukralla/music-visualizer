@@ -22,6 +22,22 @@ class App extends React.Component {
     this.state = {
       showMenu: true
     }
+    this.showToggleLayer = this.showToggleLayer.bind(this);
+  }
+
+  componentDidMount() {
+    this.mouseTimeoutHide = setTimeout(() => this.setState({showMenu: false}), 1000);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.mouseTimeoutHide);
+  }
+
+  showToggleLayer(){
+    clearTimeout(this.mouseTimeoutHide);
+    this.setState({showMenu: true});
+    
+    this.mouseTimeoutHide = setTimeout(() => this.setState({showMenu: false}), 1000);
   }
 
   render() {
@@ -30,7 +46,7 @@ class App extends React.Component {
         <Keyboard 
           target="document"
           >
-          <Main fill>
+          <Main onMouseMove={this.showToggleLayer} fill>
             <CanvasLayer background="neutral-1">
               Canvas
             </CanvasLayer>
