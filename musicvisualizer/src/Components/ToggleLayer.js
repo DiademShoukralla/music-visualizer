@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Grid, Layer } from 'grommet';
 import { MenuBar } from './Menu';
+import { ControlBox } from './ControlBox';
 
 function ToggleLayer(props) {
   return ((props.show) ? <Layer {...props} full plain>
@@ -18,18 +19,14 @@ function ToggleLayer(props) {
         a11yTitle="Other Controls"
         {...props}
       />
-      <Box 
+      <ControlBox 
         gridArea="musicControls" 
-        a11yTitle="Music Controls"
-        background="light-2">
-        
-      </Box>
-      <Box 
+        a11yTitle="Music Controls">
+      </ControlBox>
+      <ControlBox 
         gridArea="visualControls" 
-        a11yTitle="Visual Controls"
-        background="light-2">
-        
-      </Box>
+        a11yTitle="Visual Controls">
+      </ControlBox>
       <Box 
         gridArea="footer" 
         a11yTitle="Footer information"
