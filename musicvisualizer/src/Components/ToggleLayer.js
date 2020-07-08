@@ -1,5 +1,10 @@
 import React from 'react';
 import { Box, Button, Grid, Layer } from 'grommet';
+import { Lock, Unlock } from 'grommet-icons';
+
+const MenuButton = (props) => (
+  <Button {...props} />
+);
 
 function ToggleLayer(props) {
   return ((props.show) ? <Layer {...props} full plain>
@@ -14,13 +19,18 @@ function ToggleLayer(props) {
       gap="small">
       <Box 
         gridArea="otherControls" 
+        justify="evenly"
         background="light-2" 
         direction="row" 
         a11yTitle="Other Controls">
-        <Button label="label" onFocus={()=>{console.log("beep")}}/>
-        <Button label="label" />
-        <Button label="label" />
-        <Button label="label" />
+        
+        <MenuButton 
+          icon={(props.isLocked ? <Unlock/> : <Lock/>)}
+          onClick={props.toggleLock}
+
+        />
+        <MenuButton label="label" />
+        <MenuButton label="label" />
       </Box>
       <Box 
         gridArea="musicControls" 

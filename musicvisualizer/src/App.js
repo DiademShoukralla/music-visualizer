@@ -11,9 +11,11 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      showMenu: true
+      showMenu: true,
+      toggleLayerLocked: false
     }
     this.showToggleLayer = this.showToggleLayer.bind(this);
+    this.toggleLock = this.toggleLock.bind(this);
   }
 
   componentDidMount() {
@@ -28,10 +30,17 @@ class App extends React.Component {
     clearTimeout(this.mouseTimeoutHide);
     this.setState({showMenu: true});
     
-    this.mouseTimeoutHide = setTimeout(() => this.setState({showMenu: false}), 1000);
+    if(!this.state.toggleLayerLocked){
+      this.mouseTimeoutHide = setTimeout(() => this.setState({showMenu: false}), 1000);
+    }
+  }
+
+  toggleLock(){
+    this.setState(prevState => ({toggleLayerLocked: !prevState.toggleLayerLocked}), this.showToggleLayer);
   }
 
   render() {
+    console.log(this.state.toggleLayerLocked);
     return (
       <Grommet full>
         <Keyboard 
@@ -42,7 +51,11 @@ class App extends React.Component {
             <CanvasLayer background="brand">
               Canvas
             </CanvasLayer>
-            <ToggleLayer show={this.state.showMenu}/>
+            <ToggleLayer 
+              show={this.state.showMenu}
+              isLocked={this.state.toggleLayerLocked}
+              toggleLock={this.toggleLock}
+            />
           </Main>
         </Keyboard>
       </Grommet>
