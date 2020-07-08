@@ -20,6 +20,7 @@ class App extends React.Component {
     this.toggleLock = this.toggleLock.bind(this);
     this.togglePlay = this.togglePlay.bind(this);
     this.toggleMute = this.toggleMute.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
   }
 
   componentDidMount() {
@@ -51,12 +52,35 @@ class App extends React.Component {
     this.setState(prevState => ({isMute: !prevState.isMute}))
   }
 
+  onKeyPress(key){
+    const hotKeys = {
+      MUTE: 'KeyM',
+      PAUSE: 'Space',
+      LOCK: 'KeyL'
+    }
+    let hotKeyPressed = false;
+    if(key.code === hotKeys.MUTE){
+      hotKeyPressed = true;
+      this.toggleMute();
+    } else if (key.code === hotKeys.PAUSE) {
+      hotKeyPressed = true;
+      this.togglePlay();
+    } else if (key.code === hotKeys.LOCK) {
+      hotKeyPressed = true;
+      this.toggleLock();
+    }
+    if(hotKeyPressed){
+      this.showToggleLayer();
+    }
+  }
+
   render() {
     return (
       <Grommet full>
         <Keyboard 
           target="document"
           onTab={this.showToggleLayer}
+          onKeyDown={this.onKeyPress}
           >
           <Main onMouseMove={this.showToggleLayer} fill>
             <CanvasLayer background="brand">
