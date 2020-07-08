@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Button, Grid, Layer } from 'grommet';
-import { Lock, Unlock } from 'grommet-icons';
+import { Lock, Unlock, Play, Pause, Volume, VolumeMute } from 'grommet-icons';
 
 const MenuButton = (props) => (
   <Button {...props} />
@@ -29,8 +29,14 @@ function ToggleLayer(props) {
           onClick={props.toggleLock}
 
         />
-        <MenuButton label="label" />
-        <MenuButton label="label" />
+        <MenuButton 
+          icon={(props.isPlay ? <Pause/> : <Play/>)}
+          onClick={props.togglePlay}
+        />
+        <MenuButton 
+          icon={(props.isMute ? <Volume/> : <VolumeMute/>)}
+          onClick={props.toggleMute}
+        />
       </Box>
       <Box 
         gridArea="musicControls" 

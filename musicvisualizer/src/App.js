@@ -12,10 +12,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       showMenu: true,
-      toggleLayerLocked: false
+      toggleLayerLocked: false,
+      isPlay: true,
+      isMute: false
     }
     this.showToggleLayer = this.showToggleLayer.bind(this);
     this.toggleLock = this.toggleLock.bind(this);
+    this.togglePlay = this.togglePlay.bind(this);
+    this.toggleMute = this.toggleMute.bind(this);
   }
 
   componentDidMount() {
@@ -39,8 +43,15 @@ class App extends React.Component {
     this.setState(prevState => ({toggleLayerLocked: !prevState.toggleLayerLocked}), this.showToggleLayer);
   }
 
+  togglePlay(){
+    this.setState(prevState => ({isPlay: !prevState.isPlay}))
+  }
+
+  toggleMute(){
+    this.setState(prevState => ({isMute: !prevState.isMute}))
+  }
+
   render() {
-    console.log(this.state.toggleLayerLocked);
     return (
       <Grommet full>
         <Keyboard 
@@ -55,6 +66,10 @@ class App extends React.Component {
               show={this.state.showMenu}
               isLocked={this.state.toggleLayerLocked}
               toggleLock={this.toggleLock}
+              isPlay={this.state.isPlay}
+              togglePlay={this.togglePlay}
+              isMute={this.state.isMute}
+              toggleMute={this.toggleMute}
             />
           </Main>
         </Keyboard>
