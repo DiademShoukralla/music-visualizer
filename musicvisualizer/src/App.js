@@ -14,13 +14,22 @@ class App extends React.Component {
       showMenu: true,
       toggleLayerLocked: false,
       isPlay: true,
-      isMute: false
+      isMute: false,
+      musicControls: {
+        volume: 50,
+        randomness: 25
+      },
+      visualControls: {
+        numSpores: 3
+      }
     }
     this.showToggleLayer = this.showToggleLayer.bind(this);
     this.toggleLock = this.toggleLock.bind(this);
     this.togglePlay = this.togglePlay.bind(this);
     this.toggleMute = this.toggleMute.bind(this);
     this.onKeyPress = this.onKeyPress.bind(this);
+    this.updateMusic = this.updateMusic.bind(this);
+    this.updateVisuals = this.updateVisuals.bind(this);
   }
 
   componentDidMount() {
@@ -74,6 +83,14 @@ class App extends React.Component {
     }
   }
 
+  updateMusic(newValues){
+    this.setState({musicControls: newValues})
+  }
+
+  updateVisuals(newValues){
+    this.setState({visualControls: newValues})
+  }
+
   render() {
     return (
       <Grommet full>
@@ -83,8 +100,12 @@ class App extends React.Component {
           onKeyDown={this.onKeyPress}
           >
           <Main onMouseMove={this.showToggleLayer} fill>
-            <CanvasLayer background="brand">
-              Canvas
+            <CanvasLayer>
+              Volume: {this.state.musicControls.volume}
+              <br/>
+              Randomness: {this.state.musicControls.randomness}
+              <br/>
+              Spores: {this.state.visualControls.numSpores}
             </CanvasLayer>
             <ToggleLayer 
               show={this.state.showMenu}
@@ -94,6 +115,10 @@ class App extends React.Component {
               togglePlay={this.togglePlay}
               isMute={this.state.isMute}
               toggleMute={this.toggleMute}
+              musicControlValues={this.state.musicControls}
+              visualControlValues={this.state.visualControls}
+              updateMusicControlValues={this.updateMusic}
+              updateVisualControlValues={this.updateVisuals}
             />
           </Main>
         </Keyboard>

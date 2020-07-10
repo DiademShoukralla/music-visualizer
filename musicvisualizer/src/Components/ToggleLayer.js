@@ -21,12 +21,16 @@ function ToggleLayer(props) {
       />
       <MusicControlBox 
         gridArea="musicControls" 
-        a11yTitle="Music Controls">
-      </MusicControlBox>
+        a11yTitle="Music Controls"
+        musicControlValues={props.musicControlValues}
+        updateMusic={props.updateMusicControlValues}
+        />
       <VisualControlBox 
         gridArea="visualControls" 
-        a11yTitle="Visual Controls">
-      </VisualControlBox>
+        a11yTitle="Visual Controls"
+        visualControlValues={props.visualControlValues}
+        updateVisuals={props.updateVisualControlValues}
+        />
       <Box 
         gridArea="footer" 
         a11yTitle="Footer information"
